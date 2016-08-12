@@ -21,9 +21,9 @@ NC='\033[0m'
 
 function usage () {
     echo "Usage:"
-    echo "  $0"
-    echo "  $0 [-h|--help]"
-    echo "  $0 COMMAND"
+    echo "  sciconn"
+    echo "  sciconn [-h|--help]"
+    echo "  sciconn COMMAND"
     echo
     echo "Commands:"
     echo "  on          Turn on the SOCKS5 proxy"
