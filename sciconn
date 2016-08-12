@@ -53,7 +53,11 @@ elif [[ "$#" = "1" ]]; then
     elif [[ "$1" = "off" ]]; then
         sciconn_off
     elif [[ "$1" = "status" ]]; then
-        echo $proxy_mode
+        if [[ $proxy_mode = "'manual'" ]]; then
+            echo on
+        else
+            echo off
+        fi
     elif [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
         usage
     else
