@@ -54,9 +54,9 @@ elif [[ "$#" = "1" ]]; then
         sciconn_off
     elif [[ "$1" = "status" ]]; then
         if [[ $proxy_mode = "'manual'" ]]; then
-            echo on
+            echo -e "${GREEN}:D${NC} On via $socks_proxy"
         else
-            echo off
+            echo -e "${RED}:X${NC} Off"
         fi
     elif [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
         usage
