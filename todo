@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+################################################################################
+#
+# todo
+# ====
+#
+# Self-hosted todo script
+#
+# @author AnqurVanillapy
+# @date 23 August 2016
+# @version 0.0.1
+################################################################################
+
+function usage() {
+    echo "Usage:"
+    echo ""
+}
+
+initloc=57
+loc=$(wc -l < todo)
+
+case "$#" in
+    "0")
+        if [[ $loc = $initloc ]]; then
+            echo "todo: Nothing to do"
+            exit 1
+        else
+            echo -n "last modified: "
+            stat -c %y todo
+            tail -n $(($loc - $initloc - 1)) todo
+        fi
+        ;;
+    "1")
+        case "$1" in
+            "update")
+                echo update
+                ;;
+            "finish")
+                echo finish
+                ;;
+            "delete")
+                echo delete
+                ;;
+            "clean")
+                echo clean
+                ;;
+            *)
+                echo new job
+                ;;
+        esac
+        ;;
+    *)
+        usage
+        exit 1
+        ;;
+esac
+
+# 1. item 1
+# 2. item 2
+# 3. item 3
