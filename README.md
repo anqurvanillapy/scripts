@@ -1,10 +1,12 @@
-# scripts
+scripts
+=======
 
 Life in the fast *line*.
 
 > Time is running out. Make a move.
 
-## Trivia
+Trivia
+------
 
 ### Shadowsocks Daily Hacks
 
@@ -28,3 +30,8 @@ cellphone and it would work. So `sciconn-wifi` is more like an alias, but I put
 it in this repo for having this in mind.
 
 **Cons:** Some hosts will prohibit the usage of privoxy.
+
+License
+-------
+
+ISC

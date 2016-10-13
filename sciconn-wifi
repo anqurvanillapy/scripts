@@ -15,6 +15,7 @@
 
 privoxy_conf="/etc/privoxy/config"
 GREEN='\033[0;32m'
+UNDER='\e[4m'
 NC='\033[0m'
 
 echo "Running privoxy with following configs:"
@@ -29,6 +30,6 @@ grep -v '^#' < "$privoxy_conf" | {
     done
 }
 
-echo "See more in $privoxy_conf ..."
+echo -e "See more in ${UNDER}$privoxy_conf${NC} ..."
 
 privoxy --no-daemon $privoxy_conf
