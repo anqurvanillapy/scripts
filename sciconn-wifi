@@ -1,3 +1,34 @@
 #!/usr/bin/env bash
 
-echo "Toggle Wi-Fi firewall-bypassing"
+################################################################################
+#
+# sciconn-wifi
+# ============
+#
+# Scientific Wi-Fi Connection:
+#   Start privoxy to forward SOCKS5 local server to Wi-Fi
+#
+# @author AnqurVanillapy
+# @date 13 October 2016
+# @version 0.1.0
+################################################################################
+
+privoxy_conf="/etc/privoxy/config"
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+echo "Running privoxy with following configs:"
+
+grep -v '^#' < "$privoxy_conf" | {
+    while read line; do
+        for word in "listen-address" "forward-socks5t"; do
+            if [[ "$line" == *"$word"* ]]; then
+                echo -e "[${GREEN}Config${NC}] $line" | xargs
+            fi
+        done
+    done
+}
+
+echo "See more in $privoxy_conf ..."
+
+privoxy --no-daemon $privoxy_conf
