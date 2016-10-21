@@ -19,7 +19,12 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-function usage () {
+function show_header () {
+    echo "sciconn: Scientific Connection - Toggle SOCKS5 proxy"
+    echo
+}
+
+function show_usage () {
     echo "Usage:"
     echo "  sciconn"
     echo "  sciconn [-h|--help]"
@@ -59,14 +64,16 @@ elif [[ "$#" = "1" ]]; then
             echo -e "${RED}:X${NC} Off"
         fi
     elif [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-        usage
+        show_header
+        show_usage
     else
-        echo "Invalid command: $1"
+        echo "sciconn: Invalid command: $1"
         echo
-        usage
+        show_usage
         exit 1
     fi
 else
-    usage
+    show_header
+    show_usage
     exit 1
 fi
