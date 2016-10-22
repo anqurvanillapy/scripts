@@ -17,9 +17,9 @@
 # @version 0.1.1
 ################################################################################
 
-# TODO counting based on two variables:
-# `initloc': no todos
-# `loc': with todos
+# todo counting based on two variables:
+# `initloc': init lines of code
+# `loc': total lines of code
 # so todos_count = loc - initloc
 initloc=163
 loc=$(wc -l < todo)
