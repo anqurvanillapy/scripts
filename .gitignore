@@ -1,0 +1,5 @@
+# Copy `_todo` to `todo` for private use, e.g.
+#   $ cp _todo todo
+# And you can now store your TODOs in the script itself
+#   $ todo --help 
+todo

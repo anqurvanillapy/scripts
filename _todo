@@ -7,18 +7,21 @@
 #
 # Self-hosted todo script
 #
-# Warning: Don't manually edit this script. Please create issues.
+# Notice:
+#   1. Copy `_todo' to `todo' before using this script, `_todo' is prototype,
+#      and `todo' is for creating private data.
+#   2. Don't manually edit this script. Please create issues.
 #
 # @author AnqurVanillapy
 # @date 22 October 2016
-# @version 0.1.0
+# @version 0.1.1
 ################################################################################
 
 # TODO counting based on two variables:
 # `initloc': no todos
 # `loc': with todos
 # so todos_count = loc - initloc
-initloc=162
+initloc=163
 loc=$(wc -l < todo)
 todos_count=$((loc - initloc))
 
@@ -77,48 +80,6 @@ function delete_todo () {
     done
 }
 
-function update_todo () {
-    show_todo
-    echo
-    echo -n "which number [base 1]: "
-    read item_no
-    if [[ $((item_no)) != $item_no ]]; then
-        echo "todo: Non-number characters are invalid"
-        exit 1
-    else
-        lines_to_del=$(($todos_count - $item_no + 1))
-        lines_to_buf=$lines_to_del
-        if [ $((lines_to_del)) -le $todos_count ] \
-            && [ $((lines_to_del)) -ge 1 ]; then
-            case "$1" in
-                "done")
-                    rexpr="1s=\[ \]=\[x\]="
-                    update_msg="[${GREEN}done${NC}] Nailed it!"
-                    ;;
-                "undo")
-                    rexpr="1s=\[x\]=\[ \]="
-                    update_msg="[${RED}undo${NC}] Keep it up!"
-                    ;;
-                "kill")
-                    rexpr=""
-                    update_msg="[${GREEN}kill${NC}] Hasta la Vista!"
-                    lines_to_buf=$(($todos_count - $item_no))
-                    ((todos_count -= 1))
-                    ;;
-            esac
-            buffer=$(tail -n $lines_to_buf todo)
-            delete_todo $lines_to_del
-            echo "$buffer" | sed "$rexpr" >> todo
-            echo -e "$update_msg"
-            echo
-            show_todo
-        else
-            echo "todo: Invalid item number"
-            exit 1
-        fi
-    fi
-}
-
 case "$#" in
     "0")
         show_todo
@@ -139,7 +100,47 @@ case "$#" in
                 show_todo
                 ;;
             "done" | "undo" | "kill")
-                update_todo "$1"
+                show_todo
+                echo
+                echo -n "which number [base 1]: "
+                read item_no
+                if [[ $((item_no)) != $item_no ]]; then
+                    echo "todo: Non-number characters are invalid"
+                    exit 1
+                else
+                    lines_to_del=$(($todos_count - $item_no + 1))
+                    lines_to_buf=$lines_to_del
+                    _echo="echo"
+                    if [ $((lines_to_del)) -le $todos_count ] \
+                        && [ $((lines_to_del)) -ge 1 ]; then
+                        case "$1" in
+                            "done")
+                                rexpr="1s=\[ \]=\[x\]="
+                                update_msg="[${GREEN}done${NC}] Nailed it!"
+                                ;;
+                            "undo")
+                                rexpr="1s=\[x\]=\[ \]="
+                                update_msg="[${RED}undo${NC}] Keep it up!"
+                                ;;
+                            "kill")
+                                _echo="echo -n"
+                                rexpr=""
+                                update_msg="[${GREEN}kill${NC}] Hasta la Vista!"
+                                lines_to_buf=$(($todos_count - $item_no))
+                                ((todos_count -= 1))
+                                ;;
+                        esac
+                        buffer=$(tail -n $lines_to_buf todo)
+                        delete_todo $lines_to_del
+                        $_echo "$buffer" | sed "$rexpr" >> todo
+                        echo -e "$update_msg"
+                        echo
+                        show_todo
+                    else
+                        echo "todo: Invalid item number"
+                        exit 1
+                    fi
+                fi
                 ;;
             "clean")
                 delete_todo $todos_count

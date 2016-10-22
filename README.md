@@ -31,6 +31,47 @@ it in this repo for having this in mind.
 
 **Cons:** Some hosts will prohibit the usage of privoxy.
 
+### `todo`: Self-hosted todo script
+
+The underscore-prefixed `_todo`, is the prototype of `todo`, which is gitignored
+by default, and specifically for private use, because all the todo items will be
+created **at the end of** the script, and therefore I call this script
+*self-hosted* (is it a misconception?).
+
+**Warning:** Don't maunally modify the script itself. Create issues for filing
+bugs, new features, help wanted, etc.
+
+#### Usage
+
+Run the command before using `todo`:
+
+```bash
+$ cp _todo todo
+```
+
+And now you can call for help by `todo -h` or `todo --help`. Here's the output:
+
+```
+todo: Self-hosted todo script
+
+Usage:
+  todo
+  todo [-h|--help]
+  todo COMMAND
+
+Commands:
+  add         Add a new todo item
+  done        Mark an item completed
+  undo        Oops, something's not done yet
+  kill        Delete an item
+  clean       Kill the todo list
+
+Warning: Using alphabetic characters, numerical digits and common
+punctuation marks in the todo items is safer. Signs like '#', '['
+added to new todo items may cause some printing flaws, or even fatal
+errors.
+```
+
 License
 -------
 
