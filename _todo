@@ -14,15 +14,21 @@
 #
 # @author AnqurVanillapy
 # @date 22 October 2016
-# @version 0.1.1
+# @version 0.1.2
 ################################################################################
+
+if [[ -e "todo" ]]; then
+    todopath="./todo"       # assume: in the repo
+else
+    todopath=$(which todo)  # assume: already in $PATH or alias
+fi
 
 # todo counting based on two variables:
 # `initloc': init lines of code
 # `loc': total lines of code
 # so todos_count = loc - initloc
-initloc=163
-loc=$(wc -l < todo)
+initloc=171
+loc=$(wc -l < $todopath)
 todos_count=$((loc - initloc))
 
 GREEN="\033[0;32m"
@@ -61,11 +67,11 @@ function show_todo () {
         echo "todo: Nothing to do"
     else
         echo -e -n "${LBLUE}TODO${NC} / "
-        stat -c %y todo
-        unfinished=$(tail -n $todos_count todo | grep -c "\[ \]")
+        stat -c %y $todopath
+        unfinished=$(tail -n $todos_count $todopath | grep -c "\[ \]")
         echo -e "Unfinished items: [${RED}$unfinished${NC}]"
         echo
-        plain=$(tail -n $todos_count todo)
+        plain=$(tail -n $todos_count $todopath)
         for i in `seq $todos_count`; do
             plain=$(echo "$plain" | sed "${i}s=# =${i}. =")
         done
@@ -76,7 +82,7 @@ function show_todo () {
 
 function delete_todo () {
     for i in `seq $1`; do
-        sed -i '$d' todo
+        sed -i '$d' $todopath
     done
 }
 
@@ -96,7 +102,7 @@ case "$#" in
                 echo -e "[${GREEN}todo${NC}] New item added! Off we go!"
                 echo
                 ((todos_count += 1))
-                echo "# [ ] $new_item" >> todo
+                echo "# [ ] $new_item" >> $todopath
                 show_todo
                 ;;
             "done" | "undo" | "kill")
@@ -123,16 +129,18 @@ case "$#" in
                                 update_msg="[${RED}undo${NC}] Keep it up!"
                                 ;;
                             "kill")
-                                _echo="echo -n"
+                                lines_to_buf=$(($todos_count - $item_no))
+                                if [[ $lines_to_buf -lt 1 ]]; then
+                                    _echo="echo -n"
+                                fi
                                 rexpr=""
                                 update_msg="[${GREEN}kill${NC}] Hasta la Vista!"
-                                lines_to_buf=$(($todos_count - $item_no))
                                 ((todos_count -= 1))
                                 ;;
                         esac
-                        buffer=$(tail -n $lines_to_buf todo)
+                        buffer=$(tail -n $lines_to_buf $todopath)
                         delete_todo $lines_to_del
-                        $_echo "$buffer" | sed "$rexpr" >> todo
+                        $_echo "$buffer" | sed "$rexpr" >> $todopath
                         echo -e "$update_msg"
                         echo
                         show_todo
