@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "Writing random data 3 times before removing files (placebo)"
