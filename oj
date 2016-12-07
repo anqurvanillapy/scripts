@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "OJ boilderplater"
+echo "Usage: oj editor filename"
