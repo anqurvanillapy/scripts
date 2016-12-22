@@ -72,6 +72,28 @@ added to new todo items may cause some printing flaws, or even fatal
 errors.
 ```
 
+### `gh-add`: A simple commond generator to add a Github remote repository
+
+Run `_gh-add` with `scheme` (`https` or `ssh`) and `username` to generate a very
+simple shell script, with some commands for you to add a GitHub remote repo.
+
+For instance,
+
+```bash
+$ _gh-add ssh anqurvanillapy
+```
+
+Now the configuration is done! The command `gh-add` is ready to serve! So the
+next step is to add some remote repos...
+
+```
+$ gh-add hello-world
+# This is equivalent to
+#   $ git remote add git@github.com:anqurvanillapy/hello-world.git
+```
+
+Have fun with this little hack!
+
 License
 -------
 

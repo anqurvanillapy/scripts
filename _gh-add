@@ -5,7 +5,7 @@
 # gh-add
 # ======
 #
-# A simple command to add a GitHub remote repo
+# A simple command generator to add a GitHub remote repo
 #
 # Notice:
 #   1. Run this script to enter the config, e.g. username and HTTPS/SSH option.
