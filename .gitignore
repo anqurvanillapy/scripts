@@ -3,3 +3,7 @@
 # And you can now store your TODOs in the script itself
 #   $ todo --help 
 todo
+
+# Execute `_gh-add` to configure for private use. Checkout `--help` for details.
+#   $ _gh-add --help
+gh-add
