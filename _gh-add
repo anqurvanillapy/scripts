@@ -31,7 +31,6 @@ GH_REPO_ADDR="github.com"
 
 if [[ "$#" == "2" ]]; then
     _scheme=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-
     case "$_scheme" in
         "https")
             GH_REPO_ADDR="https://$GH_REPO_ADDR/$2"
@@ -43,7 +42,6 @@ if [[ "$#" == "2" ]]; then
             _usage
             ;;
     esac
-
     _generate
 else
     _usage

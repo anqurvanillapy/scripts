@@ -89,7 +89,7 @@ next step is to add some remote repos...
 ```
 $ gh-add hello-world
 # This is equivalent to
-#   $ git remote add git@github.com:anqurvanillapy/hello-world.git
+#   $ git remote add origin git@github.com:anqurvanillapy/hello-world.git
 ```
 
 Have fun with this little hack!
