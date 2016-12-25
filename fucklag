@@ -1,3 +1,32 @@
 #!/usr/bin/env bash
 
-echo "fuck latency: retry the failed download command forever"
+################################################################################
+#
+# fucklag
+# =======
+#
+# Run a command forever, until it's done.
+#
+# @author AnqurVanillapy
+# @date 25 December 2016
+# @version 0.1.0
+################################################################################
+
+_command="$@"
+_count=1
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+while :
+do
+    echo -e "[${RED}${BOLD}fucklag${NC}] attempt #$_count"
+    $_command
+    if [[ "$?" = "0" ]]; then
+        break
+    fi
+    ((_count++))
+done
+
+echo -e "[${GREEN}${BOLD}fucklag${NC}] Done at attempt #$_count"
