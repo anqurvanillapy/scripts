@@ -7,17 +7,29 @@
 #
 # Run a command forever, until it's done.
 #
+# WARN: No limits like timeout or upper bound.
+#
 # @author AnqurVanillapy
 # @date 25 December 2016
-# @version 0.1.0
+# @version 0.1.1
 ################################################################################
 
-_command="$@"
-_count=1
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 BOLD='\033[1m'
 NC='\033[0m'
+
+_command="$@"
+_count=1
+
+function _usage () {
+    echo "usage: fucklag [command]"
+    exit 1
+}
+
+if [[ "$#" = "0" ]]; then
+    _usage
+fi
 
 while :
 do
