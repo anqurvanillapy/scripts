@@ -23,7 +23,7 @@ _command="$@"
 _count=1
 
 function _usage () {
-    echo "usage: fucklag [command]"
+    echo "Usage: fucklag command [args...]"
     exit 1
 }
 

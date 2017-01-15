@@ -31,5 +31,4 @@ grep -v '^#' < "$privoxy_conf" | {
 }
 
 echo -e "See more in ${UNDER}$privoxy_conf${NC} ..."
-
 privoxy --no-daemon $privoxy_conf

@@ -16,13 +16,13 @@
 ################################################################################
 
 function _usage () {
-    echo "Usage: $0 [https|ssh] [username]"
+    echo "Usage: $0 {https|ssh} username"
     exit 1
 }
 
 function _generate () {
     echo "#!/usr/bin/env bash" > gh-add
-    echo "if [[ \"\$#\" != \"1\" ]]; then echo \"usage: gh-add [repo_name]\" && exit 1; fi" >> gh-add
+    echo "if [[ \"\$#\" != \"1\" ]]; then echo \"Usage: gh-add repo_name\" && exit 1; fi" >> gh-add
     echo "git remote add origin $GH_REPO_ADDR/\$1.git" >> gh-add
     chmod -f +x gh-add
 }

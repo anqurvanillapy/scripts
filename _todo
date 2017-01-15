@@ -46,7 +46,7 @@ function show_header () {
 function show_usage () {
     echo "Usage:"
     echo "  todo"
-    echo "  todo [-h|--help]"
+    echo "  todo {-h|--help}"
     echo "  todo COMMAND"
     echo
     echo "Commands:"

@@ -27,7 +27,7 @@ function show_header () {
 function show_usage () {
     echo "Usage:"
     echo "  sciconn"
-    echo "  sciconn [-h|--help]"
+    echo "  sciconn {-h|--help}"
     echo "  sciconn COMMAND"
     echo
     echo "Commands:"
