@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""\
+    getebill
+    ========
+
+    By AnqurVanillapy (Mar 11, 2017)
+
+    Get electric bill (specific to JNU campus network users).
+
+    - Prerequisites
+        + requests
+        + lxml
+"""
+
+import sys, re
+from time import strftime
+import requests as req
+from lxml import html
+
+
+_USAGE = 'Usage: {} dorm_id [-h|--help]'.format(sys.argv[0])
+_URL = 'http://202.116.25.12/{}'
+LOGIN_URL = _URL.format('Login.aspx')
+MAIN_URL = _URL.format('default.aspx')
+KEYS = ['__VIEWSTATE', '__VIEWSTATEGENERATOR', '__EVENTVALIDATION']
+
+
+def get_form():
+    """Get the login form."""
+    res = req.get(LOGIN_URL)
+    payload = html.fromstring(res.text)
+    return res.cookies, dict(zip(KEYS,
+        map(lambda x: payload.get_element_by_id(x).value, KEYS)))
+
+
+def send_form(dorm_id, cookies, dat):
+    """Send the login form with dorm ID, and return the logged-in cookies."""
+    dat['txtname'] = dorm_id
+    dat['hidtime'] = strftime('%Y-%m-%d %H:%M:%S')
+    for k in ['__LASTFOCUS', '__EVENTTARGET', '__EVENTARGUMENT', 'txtpwd',
+        'ctl01']: dat[k] = ''
+    return req.post(LOGIN_URL, data=dat, cookies=cookies).cookies
+
+
+def get_ebill(cookies):
+    """Get the electric bill we aim for, using the cookies."""
+    # XXX: This field is crucially important.
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+
+    restxt = req.get(MAIN_URL, cookies=cookies).text
+    payload = html.fromstring(restxt)
+
+    # Pick the electric meter ID from the JavaScript code, without parsing it.
+    tmp = (lambda s, i, j: s[s.index(i):s.index(j)])(restxt,
+        'box.__34', 'box.__35')
+    emeter_id = tmp[tmp.index('value:"') + 7:].split('"')[0]
+
+    # XHR data that will be sent via the form.
+    xhr_dat = {
+        '__EVENTTARGET':
+            u'RegionPanel1$Region2$GroupPanel1$ContentPanel1$DDL_监控项目',
+        '__EVENTARGUMENT': '',
+        '__LASTFOCUS': '',
+        # Seems lots of them are unnecessary.
+        'hidpageCurrentSize': '1',
+        'hidpageSum': '1',
+        'hidpageSum2': '1',
+        'hidpageSum3': '1',
+        'hidpageCurrentSize2': '1',
+        'hidpageCurrentSize3': '1',
+        'RegionPanel1$Region3$ContentPanel3$tb_ammeterNumb':
+            u'[电表]{}'.format(emeter_id),
+        'RegionPanel1$Region1$GroupPanel2$Grid3$Toolbar2$pagesize3': '1',
+        'RegionPanel1$Region1$GroupPanel2$Grid3$Toolbar2$pagesize2': '1',
+        'RegionPanel1$Region1$GroupPanel2$Grid3$Toolbar2$pagesize': '1',
+        '__box_page_state_changed': 'false',
+        '__12_value': u'[电表]|{}'.format(emeter_id),
+        '__12_last_value': u'[电表]|{}'.format(emeter_id),
+        '__12_disable_select_row_indexs': '',
+        '__41_value': '00900200',
+        '__41_last_value': '00000000',
+        '__41_disable_select_row_indexs': '',
+        '__43_selectedRows': '',
+        '__44_selectedRows': '',
+        '__45_selectedRows': '',
+        '__box_ajax_mark': 'true'
+    }
+
+    # States, namely the changeable values.
+    states = dict(zip(KEYS, map(lambda x: payload.get_element_by_id(x).value,
+        KEYS)))
+    
+    # Get the placeholders from the form.
+    form1 = payload.get_element_by_id('form1')
+    inputs = {k: '' if not v else v for k, v in form1.fields.items()}
+
+    restxt = req.post(MAIN_URL, data={**states, **inputs, **xhr_dat},
+        headers=headers, cookies=cookies).text
+    return restxt[restxt.index('box.__27.setValue("') + 19:].split('"')[0]
+
+
+def parse_args():
+    """Parse the args. Show usage if invalid args input."""
+    try:
+        assert(len(sys.argv) == 2 and sys.argv[1] not in {'-h', '--help'})
+        return int(sys.argv[1])
+    except:
+        print(_USAGE)
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    parse_args()
+    cookies = send_form(sys.argv[1], *get_form())
+    print(get_ebill(cookies))
