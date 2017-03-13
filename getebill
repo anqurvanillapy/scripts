@@ -14,7 +14,7 @@
         + lxml
 """
 
-import sys, re
+import sys
 from time import strftime
 import requests as req
 from lxml import html
