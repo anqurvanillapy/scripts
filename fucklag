@@ -41,4 +41,4 @@ do
     ((_count++))
 done
 
-echo -e "[${GREEN}${BOLD}fucklag${NC}] Done at attempt #$_count"
+echo -e "[${GREEN}${BOLD}fucklag${NC}] Phew! Finally done at attempt #$_count"
