@@ -5,7 +5,8 @@
 # turf
 # ====
 #
-# Tag your folder. Only available for Bash users.
+# Tag your folder, without modifying any personal configs like adding aliases.
+# Data are stored inside the script itself. Only available for Bash users.
 #
 # Notice:
 #   1. Copy `_turf' to `turf' before using this script, `_turf' is prototype,
@@ -23,7 +24,7 @@ else
     turfpath=$(which turf)  # turf is already in $PATH or alias
 fi
 
-initloc=171 # lines of code when there are no tags
+initloc=172 # lines of code when there are no tags
 loc=$(wc -l < $turfpath)
 tags_count=$((loc - initloc))
 
