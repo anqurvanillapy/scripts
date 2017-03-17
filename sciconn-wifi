@@ -6,7 +6,7 @@
 # ============
 #
 # Scientific Wi-Fi Connection:
-#   Start privoxy to forward SOCKS5 local server to Wi-Fi
+#   Start privoxy to forward SOCKS5 local server to Wi-Fi.
 #
 # @author AnqurVanillapy
 # @date 13 October 2016

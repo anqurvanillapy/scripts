@@ -31,17 +31,17 @@ it in this repo for having this in mind.
 
 **Cons:** Some hosts will prohibit the usage of privoxy.
 
-### `todo`: Self-hosted todo script
+### Some self-hosted scripts
 
-The underscore-prefixed `_todo`, is the prototype of `todo`, which is gitignored
-by default, and specifically for private use, because all the todo items will be
-created **at the end of** the script, and therefore I call this script
-*self-hosted* (is it a misconception?).
+The underscore-prefixed scripts, e.g. `_todo` and `_turf`, are the prototype of
+the self-hosted code, which are gitignore-d by default, and specifically for
+private use, because all the data will be created **at the end of** the script,
+and therefore I call these scripts *self-hosted* (is it a misconception?).
 
-**Warning:** Don't maunally modify the script itself. Create issues for filing
+**Warning:** Don't maunally modify the scripts itself. Create issues for filing
 bugs, new features, help wanted, etc.
 
-#### Usage
+#### Example usage of `todo`
 
 Run the command before using `todo`:
 

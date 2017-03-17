@@ -5,7 +5,7 @@
 # mathpng
 # =======
 #
-# Convert LaTeX files into PNG images
+# Convert LaTeX files into PNG images.
 #
 # Dependencies:
 #   - `latex'
