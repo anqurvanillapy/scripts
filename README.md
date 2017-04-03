@@ -33,7 +33,7 @@ it in this repo for having this in mind.
 
 ### Some self-hosted scripts
 
-The underscore-prefixed scripts, e.g. `_todo` and `_turf`, are the prototype of
+Some underscore-prefixed scripts, e.g. `_todo` and `_turf`, are the prototype of
 the self-hosted code, which are gitignore-d by default, and specifically for
 private use, because all the data will be created **at the end of** the script,
 and therefore I call these scripts *self-hosted* (is it a misconception?).
