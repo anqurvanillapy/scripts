@@ -11,6 +11,9 @@ turf
 #   $ _gh-add --help
 gh-add
 
+# Ditto.
+gh-clone
+
 #### joe made this: http://goel.io/joe
 
 #####=== Python ===#####

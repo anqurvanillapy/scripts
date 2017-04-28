@@ -72,7 +72,9 @@ added to new todo items may cause some printing flaws, or even fatal
 errors.
 ```
 
-### `gh-add`: A simple commond generator to add a Github remote repository
+### Some simple commond generators for Github repository hacks
+
+#### `gh-add`
 
 Run `_gh-add` with `scheme` (`https` or `ssh`) and `username` to generate a very
 simple shell script, with some commands for you to add a GitHub remote repo.
@@ -86,13 +88,23 @@ $ _gh-add ssh anqurvanillapy
 Now the configuration is done! The command `gh-add` is ready to serve! So the
 next step is to add some remote repos...
 
-```
+```bash
 $ gh-add hello-world
 # This is equivalent to
 #   $ git remote add origin git@github.com:anqurvanillapy/hello-world.git
 ```
 
-Have fun with this little hack!
+#### `gh-clone`
+
+This script is pretty similar to the previous one, for conveniently cloning a
+remote repository.
+
+```bash
+$ _gh-clone ssh # configure that it would clone a repo via SSH
+$ gh-clone username repo    # now it is available
+```
+
+Have fun with these little hack!
 
 License
 -------
