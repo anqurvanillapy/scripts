@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+################################################################################
+#
+# hless
+# =====
+#
+# Highlighted less.
+#
+# Note: `pygmentize' as prerequisite.
+#
+# @author AnqurVanillapy
+# @date 30 April 2017
+# @version 0.1.0
+################################################################################
+
+# Yup, nothing cool here.
+pygmentize $1 | less -R
