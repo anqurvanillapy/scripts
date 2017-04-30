@@ -11,7 +11,7 @@
 #
 # @author AnqurVanillapy
 # @date 28 April 2017
-# @version 0.1.0
+# @version 0.1.1
 ################################################################################
 
-curl -L -s https://www.gitignore.io/api/$@
+curl -L -s https://www.gitignore.io/api/$1
