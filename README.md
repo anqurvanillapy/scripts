@@ -104,7 +104,7 @@ $ _gh-clone ssh # configure that it would clone a repo via SSH
 $ gh-clone username repo    # now it is available
 ```
 
-Have fun with these little hack!
+Have fun with these little hacks!
 
 License
 -------
