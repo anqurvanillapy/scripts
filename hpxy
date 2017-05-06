@@ -2,17 +2,22 @@
 
 ################################################################################
 #
-# leinpi
-# ======
+# hpxy
+# ====
 #
-# Namely `lein proxy install', install dependencies with local $http_proxy.
+# Namely `HTTP proxy', execute commands with temporary local $http_proxy.
 #
 # Note: `privoxy' as rerequisite.
 #
 # @author AnqurVanillapy
 # @date 6 May 2017
-# @version 0.1.0
+# @version 0.2.0
 ################################################################################
+
+if [[ $# -lt 1 ]]; then
+    echo "usage: hpxy commands ..."
+    exit 1
+fi
 
 function get_addr () {
     while read line; do
@@ -31,5 +36,5 @@ url=$(grep -v '^#' < "$privoxy_conf" | get_addr)
 # Starting proxy and `lein install'...
 export http_proxy=$url
 privoxy --no-daemon $privoxy_conf &
-lein install $@
+$@
 kill $!
