@@ -33,7 +33,7 @@ function get_addr () {
 privoxy_conf="/etc/privoxy/config"
 url=$(grep -v '^#' < "$privoxy_conf" | get_addr)
 
-# Starting proxy and `lein install'...
+# Starting proxy and following commands...
 export http_proxy=$url
 privoxy --no-daemon $privoxy_conf &
 $@
