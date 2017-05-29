@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Make a slideshow using python-markdown & google-chrome --headless"
