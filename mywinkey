@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+################################################################################
+#
+# mywinkey
+# ========
+#
+# Win 8+ OSes license keys are embedded in the firmware.  It's good to know how
+# to go back to the wilderness without paying a new one.
+#
+# @author AnqurVanillapy
+# @date 3 June 2017
+# @version 0.1.0
+################################################################################
+
+license=/sys/firmware/acpi/tables/MSDM
+
+if [[ -e "$license" ]]; then
+    echo "Reading $license ..." && sudo xxd "$license"
+else
+    echo "Buy a new one my friend, forget about the pirated..." && exit 1
+fi
