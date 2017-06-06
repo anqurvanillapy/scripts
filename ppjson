@@ -9,9 +9,8 @@
 #
 # @author AnqurVanillapy
 # @date 3 June 2017
-# @version 0.1.0
+# @version 0.1.1
 ################################################################################
 
-# Nothing special here I promise...
-if [[ "$#" != "2" ]]; then echo "Usage: ppjson infile outfile" && exit 1; fi
-python3 -m json.tool $1 $2
+# So damn useful...
+python3 -m json.tool $@
