@@ -10,6 +10,8 @@
 
     1. TCP connection via socket
     2. Check if HTTPBasic Auth required
+
+    - Prerequisites: requests
 """
 
 import sys
