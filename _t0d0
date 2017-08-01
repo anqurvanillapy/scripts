@@ -2,28 +2,28 @@
 
 ################################################################################
 #
-# todo
+# t0d0
 # ====
 #
 # Self-hosted todo script.
 #
 # Notice:
-#   1. Copy `_todo' to `todo' before using this script, `_todo' is prototype,
-#      and `todo' is for creating private data.
+#   1. Copy `_t0d0' to `t0d0' before using this script, `_t0d0' is prototype,
+#      and `t0d0' is for creating private data.
 #   2. Don't manually edit this script. Please create issues.
 #
 # @author AnqurVanillapy
 # @date 22 October 2016
-# @version 0.1.2
+# @version 0.2.0
 ################################################################################
 
-if [[ -e "todo" ]]; then
-    todopath="./todo"       # assume: in the repo
+if [[ -e "t0d0" ]]; then
+    todopath="./t0d0"       # assume: in the repo
 else
-    todopath=$(which todo)  # assume: already in $PATH or alias
+    todopath=$(which t0d0)  # assume: already in $PATH or alias
 fi
 
-# todo counting based on two variables:
+# Todo items counting based on two variables:
 # `initloc': init lines of code
 # `loc': total lines of code
 # so todos_count = loc - initloc
@@ -39,19 +39,19 @@ NC="\033[0m"
 NC_E="\\\033\[0m"
 
 function show_header () {
-    echo "todo: Self-hosted todo script"
+    echo "t0d0: Self-hosted todo script"
     echo
 }
 
 function show_usage () {
     echo "Usage:"
-    echo "  todo"
-    echo "  todo {-h|--help}"
-    echo "  todo COMMAND"
+    echo "  t0d0"
+    echo "  t0d0 {-h|--help}"
+    echo "  t0d0 COMMAND"
     echo
     echo "Commands:"
     echo "  add         Add a new todo item"
-    echo "  done        Mark an item completed"
+    echo "  done        Mark an item as completed"
     echo "  undo        Oops, something's not done yet"
     echo "  kill        Delete an item"
     echo "  clean       Kill the todo list"
@@ -64,9 +64,9 @@ function show_usage () {
 
 function show_todo () {
     if [[ $todos_count -eq 0 ]]; then
-        echo "todo: Nothing to do"
+        echo "t0d0: Nothing to do"
     else
-        echo -e -n "${LBLUE}TODO${NC} / "
+        echo -e -n "${LBLUE}T0D0${NC} / "
         stat -c %y $todopath
         unfinished=$(tail -n $todos_count $todopath | grep -c "\[ \]")
         echo -e "Unfinished items: [${RED}$unfinished${NC}]"
@@ -99,7 +99,7 @@ case "$#" in
             "add")
                 echo -n "new item: "
                 read new_item
-                echo -e "[${GREEN}todo${NC}] New item added! Off we go!"
+                echo -e "[${GREEN}t0d0${NC}] New item added! Off we go!"
                 echo
                 ((todos_count += 1))
                 echo "# [ ] $new_item" >> $todopath
@@ -111,7 +111,7 @@ case "$#" in
                 echo -n "which number [base 1]: "
                 read item_no
                 if [[ $((item_no)) != $item_no ]]; then
-                    echo "todo: Non-number characters are invalid"
+                    echo "t0d0: Non-number characters are invalid"
                     exit 1
                 else
                     lines_to_del=$(($todos_count - $item_no + 1))
@@ -145,7 +145,7 @@ case "$#" in
                         echo
                         show_todo
                     else
-                        echo "todo: Invalid item number"
+                        echo "t0d0: Invalid item number"
                         exit 1
                     fi
                 fi
@@ -156,7 +156,7 @@ case "$#" in
                 show_todo
                 ;;
             *)
-                echo "todo: Invalid command: $1"
+                echo "t0d0: Invalid command: $1"
                 echo
                 show_usage
                 exit 1

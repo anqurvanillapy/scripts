@@ -1,8 +1,8 @@
-# Copy `_todo` to `todo` for private use, e.g.
-#   $ cp _todo todo
+# Copy `_t0d0` to `t0d0` for private use, e.g.
+#   $ cp _t0d0 t0d0
 # And you can now store your TODOs in the script itself
-#   $ todo --help 
-todo
+#   $ t0d0 --help 
+t0d0
 
 # Ditto.
 turf
