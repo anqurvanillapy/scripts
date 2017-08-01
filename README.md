@@ -33,7 +33,7 @@ it in this repo for having this in mind.
 
 ### Some self-hosted scripts
 
-Some underscore-prefixed scripts, e.g. `_todo` and `_turf`, are the prototype of
+Some underscore-prefixed scripts, e.g. `_t0d0` and `_turf`, are the prototype of
 the self-hosted code, which are gitignore-d by default, and specifically for
 private use, because all the data will be created **at the end of** the script,
 and therefore I call these scripts *self-hosted* (is it a misconception?).
@@ -41,23 +41,23 @@ and therefore I call these scripts *self-hosted* (is it a misconception?).
 **Warning:** Don't maunally modify the scripts itself. Create issues for filing
 bugs, new features, help wanted, etc.
 
-#### Example usage of `todo`
+#### Example usage of `t0d0`
 
-Run the command before using `todo`:
+Run the command before using `t0d0`:
 
 ```bash
-$ cp _todo todo
+$ cp _t0d0 t0d0
 ```
 
-And now you can call for help by `todo -h` or `todo --help`. Here's the output:
+And now you can call for help by `t0d0 -h` or `t0d0 --help`. Here's the output:
 
 ```
-todo: Self-hosted todo script
+t0d0: Self-hosted todo script
 
 Usage:
-  todo
-  todo [-h|--help]
-  todo COMMAND
+  t0d0
+  t0d0 [-h|--help]
+  t0d0 COMMAND
 
 Commands:
   add         Add a new todo item
