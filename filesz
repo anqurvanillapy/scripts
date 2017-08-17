@@ -5,7 +5,7 @@
 # filesz
 # ======
 #
-# Get the size of single or total size of multiple files (or even directories).
+# Get the (total) size of single or multiple files (or even directories).
 #
 # @author AnqurVanillapy
 # @date 12 August 2017
@@ -17,7 +17,7 @@ s=0
 
 case "$#" in
     "0")
-        echo "Usage: filesz filename ..." && exit 1
+        echo "Usage: filesz filename..." && exit 1
         ;;
     "1")
         $_stat $1
