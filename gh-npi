@@ -14,7 +14,7 @@
 #
 # @author AnqurVanillapy
 # @date 25 June 2017
-# @version 0.1.0
+# @version 0.2.0
 ################################################################################
 
 if [[ "$#" != "1" ]]; then echo "Usage: gh-npi repo" && exit 1; fi
@@ -26,6 +26,6 @@ mkdir "$repo"
 cd "$repo"
 git init
 echo "Adding a remote repository on GitHub..." && gh-add "$repo"
-npm init
+echo "Init an NPM package..." && npm init
 echo "Fetching a .gitignore file for Node.js..." && gi node > .gitignore
 echo "All done! Now start with \`cd $repo' and don't forget to add a LICENSE ;)"
