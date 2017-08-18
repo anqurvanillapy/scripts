@@ -11,7 +11,7 @@
  *
  *  @author AnqurVanillapy
  *  @date 19 August 2017
- *  @version 0.1.0
+ *  @version 0.1.1
  */
 
 'use strict'
@@ -34,9 +34,9 @@ function getLine () {
   return new Promise((resolve, reject) => {
     process.stdin.resume()
     process.stdin.once('data', l => {
-      const line = l.toString().replace(/[\n\r]/g, '')
+      const line = l.toString().trim().replace(/[\n\r]/g, '')
       process.stdin.pause()
-      if (!line.trim()) reject(new Error('cannot read from stdout (pipe)'))
+      if (!line) reject(new Error('cannot read from stdout (pipe)'))
       else resolve(line)
     })
   })
