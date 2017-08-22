@@ -52,7 +52,7 @@ function getLine () {
       break
     case 'check':
       try {
-        let token = process.argv[4] || await getLine()
+        const token = process.argv[4] || await getLine()
         process.exit(!check(token, process.argv[3]))
       } catch (err) {
         throw err
