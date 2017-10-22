@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 """\
-    toggxy
-    ======
+toggxy
+======
 
-    App Indicator for toggling Ubuntu proxy setting between `none` and `manual`,
-    that's it.
+App Indicator for toggling Ubuntu proxy setting between `none` and `manual`,
+that's it.
 
-    By AnqurVanillapy (Sep 3, 2017)
+By AnqurVanillapy (Sep 3, 2017)
 """
 
 import signal
@@ -37,6 +37,9 @@ class Toggxy:
         self.app.set_status(appindicator.IndicatorStatus.ACTIVE)
         self.app.set_menu(self.setup_menu())
         gtk.main()
+
+        # Prevents inconsistency.
+        self.proxy_setting.set_string('mode', self.MODES[self.is_on])
 
     def setup_menu(self):
         """Set up GTK menu"""
