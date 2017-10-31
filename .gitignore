@@ -6,13 +6,9 @@ t0d0
 
 # Ditto.
 turf
-
-# Execute `_gh-add` to configure for private use. Checkout `--help` for details.
-#   $ _gh-add --help
 gh-add
-
-# Ditto.
 gh-clone
+crmap
 
 #### joe made this: http://goel.io/joe
 
