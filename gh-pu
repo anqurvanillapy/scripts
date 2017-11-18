@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+################################################################################
+#
+# gh-pu
+# =====
+#
+# `git push' to the upstream GitHub repo, or `--set-upgream' to `origin/master'.
+#
+# @author AnqurVanillapy
+# @date 18 November 2017
+# @version 0.1.0
+################################################################################
+
+if [[ $# -ne 0 ]]; then echo "Usage: gh-pu" && exit 1; fi
+
+gitstatus=$(git status -sb)
+if [[ $? -ne 0 ]]; then exit 1; fi
+
+if [[ $gitstatus != *...* ]]; then flag="-u origin master"; fi
+git push $flag
