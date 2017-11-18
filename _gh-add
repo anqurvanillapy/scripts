@@ -12,7 +12,7 @@
 #
 # @author AnqurVanillapy
 # @date 22 December 2016
-# @version 0.1.1
+# @version 0.2.0
 ################################################################################
 
 function _usage () {
@@ -22,8 +22,9 @@ function _usage () {
 
 function _generate () {
     echo "#!/usr/bin/env bash" > gh-add
-    echo "if [[ \"\$#\" != \"1\" ]]; then echo \"Usage: gh-add repo_name\" && exit 1; fi" >> gh-add
-    echo "git remote add origin $GH_REPO_ADDR/\$1.git" >> gh-add
+    echo "if [[ \$# -ne 0 ]]; then echo \"Usage: gh-add\" && exit 1; fi" \
+        >> gh-add
+    echo "git remote add origin $GH_REPO_ADDR/\${PWD##*/}.git" >> gh-add
     chmod -f +x gh-add
 }
 
