@@ -9,8 +9,8 @@
 #
 # @author AnqurVanillapy
 # @date 18 November 2017
-# @version 0.1.0
+# @version 0.1.1
 ################################################################################
 
 if [[ $# -ne 1 ]]; then echo "Usage: gh-cm MESSAGE" && exit 1; fi
-git commit -m $1
+git commit -m "$1"
