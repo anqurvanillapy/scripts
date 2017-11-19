@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 """\
-    mkslide
-    =======
+mkslide
+=======
 
-    Make an HTML-based slideshow.
+Make an HTML-based slideshow.
 
-    By AnqurVanillapy (May 25, 2017)
+By AnqurVanillapy (May 25, 2017)
 """
 
 import sys, codecs
@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6, p {
   text-align: center;
 }
 
-ul > li { font-size: 5em; }
+ul > li { font-size: 5rem; }
 
 h1 {
   font-weight: bold;
