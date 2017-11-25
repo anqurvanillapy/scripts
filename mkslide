@@ -9,7 +9,9 @@ Make an HTML-based slideshow.
 By AnqurVanillapy (May 25, 2017)
 """
 
-import sys, codecs
+import sys
+import re
+import codecs
 from os.path import splitext
 from markdown import markdown
 from pygments.formatters import HtmlFormatter
@@ -117,16 +119,17 @@ table {
 """
 
 script = """\
-class Presentation {
+class Slideshow {
   constructor () {
-    this.slides = document.querySelectorAll('section')
+    this.$slides = document.querySelectorAll('section')
     this._id = 0
 
-    // Key and mouse events.
-    document.addEventListener('click', _ => { ++this.activeId })
+    document.addEventListener('click', () => {
+      ++this.activeId
+    })
 
     window.addEventListener('keydown', e => {
-      let key = e.which ? e.which : e.keyCode
+      const key = e.which ? e.which : e.keyCode
       switch (key) {
         case 13:  // enter
         case 32:  // space
@@ -149,22 +152,24 @@ class Presentation {
   set activeId (val) {
     if (val !== this.activeId) {
       this._id = val
-      this.present()
+      this.show()
     }
   }
 
-  present () {
-    if (this.activeId < 0) ++this.activeId
-    else if (this.activeId >= this.slides.length) --this.activeId
-    else {
-      this.slides.forEach(s => { s.style.display = 'none' })
-      this.slides[this.activeId].style.display = 'flex'
+  show () {
+    if (this.activeId < 0) {
+      ++this.activeId
+    } else if (this.activeId >= this.$slides.length) {
+      --this.activeId
+    } else {
+      this.$slides.forEach(s => { s.style.display = 'none' })
+      this.$slides[this.activeId].style.display = 'flex'
     }
   }
 }
 
-let pre = new Presentation()
-pre.present() // init first slide
+const pre = new Slideshow()
+pre.show()
 """
 
 template = """\
@@ -191,12 +196,13 @@ md_exts = list(map(lambda x: 'markdown.extensions.{}'.format(x),
 with codecs.open(fname, 'r', encoding='utf-8') as f:
     content = markdown(f.read(), extensions=md_exts)
 
-content = '\n'.join(['<section>{}</section>'.format(sec) \
+content = ''.join(['<section>{}</section>'.format(sec) \
                      for sec in content.split('<hr />')])
 
 with codecs.open(ofile, 'w', encoding='utf-8', errors='xmlcharrefreplace') as f:
+    css_minify = lambda s: re.sub(r'\/\*.*\*\/', '', s).replace('\n', '')
     f.write(template.format(title=title,
-                            hilite=hilite,
-                            style=style,
+                            hilite=css_minify(hilite),
+                            style=css_minify(style),
                             script=script,
-                            content=content))
+                            content=content.replace('\n', '')))
