@@ -42,6 +42,7 @@ html, body, section {
 }
 
 section {
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -122,6 +123,7 @@ script = """\
 class Slideshow {
   constructor () {
     this.$slides = document.querySelectorAll('section')
+    this._len = this.$slides.length
     this._id = 0
 
     document.addEventListener('click', () => {
@@ -150,26 +152,21 @@ class Slideshow {
 
   get activeId () { return this._id }
   set activeId (val) {
-    if (val !== this.activeId) {
+    if (val !== this.activeId && val >= 0 && val < this._len) {
+      const prevId = this._id
       this._id = val
-      this.show()
+      this.show(prevId)
     }
   }
 
-  show () {
-    if (this.activeId < 0) {
-      ++this.activeId
-    } else if (this.activeId >= this.$slides.length) {
-      --this.activeId
-    } else {
-      this.$slides.forEach(s => { s.style.display = 'none' })
-      this.$slides[this.activeId].style.display = 'flex'
-    }
+  show (prevId) {
+    this.$slides[prevId].style.display = 'none'
+    this.$slides[this.activeId].style.display = 'flex'
   }
 }
 
 const pre = new Slideshow()
-pre.show()
+pre.show(0)
 """
 
 template = """\
