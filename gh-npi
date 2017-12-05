@@ -25,7 +25,7 @@ repo="$1"
 mkdir "$repo"
 cd "$repo"
 git init
-echo "Adding a remote repository on GitHub..." && gh-add "$repo"
+echo "Adding a remote repository on GitHub..." && gh-add
 echo "Init an NPM package..." && npm init
 echo "Fetching a .gitignore file for Node.js..." && gi node > .gitignore
 echo "All done! Now start with \`cd $repo' and don't forget to add a LICENSE ;)"
