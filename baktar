@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+################################################################################
+#
+# baktar
+# ======
+#
+# Perform incremental backups with `tar`.
+#
+# @author AnqurVanillapy
+# @date 4 December 2017
+# @version 0.1.0
+################################################################################
+
+function show_usage () {
+    echo "Usage: baktar {create|update|restore} FILENAME DIRECTORY"
+    echo
+    echo "e.g. baktar create snapshot.tar ./foo"
+    exit 1
+}
+
+if [[ $# -ne 3 ]]; then show_usage; fi
+
+filename=$2
+dirname=$3
+tempdir=$(mktemp -d)
+
+function defer_rmtmp () {
+    rm -rf "$tempdir"
+}
+trap defer_rmtmp EXIT
+
+case "$1" in
+    "create")
+        # Don't laugh at my tar skills...
+        tar \
+            --create \
+            --no-check-device \
+            --file=$tempdir/1.tar \
+            --listed-incremental=$tempdir/index \
+            "$3"
+        ;;
+    "update")
+        # TODO
+        ;;
+    "restore")
+        # TODO
+        ;;
+    *)
+        show_usage
+        ;;
+esac
