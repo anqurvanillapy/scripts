@@ -202,4 +202,4 @@ with codecs.open(ofile, 'w', encoding='utf-8', errors='xmlcharrefreplace') as f:
                             hilite=css_minify(hilite),
                             style=css_minify(style),
                             script=script,
-                            content=content.replace('\n', '')))
+                            content=content))
