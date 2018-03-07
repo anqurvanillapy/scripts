@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+################################################################################
+#
+# lock
+# ====
+#
+# Lock the screen.
+#
+# @author AnqurVanillapy
+# @date 7 March 2018
+# @version 0.1.0
+################################################################################
+
+
+if [[ "$#" -ne "0" ]]; then echo "Usage: lock" && exit 1; fi
+gnome-screensaver-command -l
