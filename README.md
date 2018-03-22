@@ -89,9 +89,10 @@ Now the configuration is done! The command `gh-add` is ready to serve! So the
 next step is to add some remote repos...
 
 ```bash
-$ gh-add hello-world
+$ cd foo/
+$ gh-add
 # This is equivalent to
-#   $ git remote add origin git@github.com:anqurvanillapy/hello-world.git
+#   $ cd foo/ && git remote add origin git@github.com:anqurvanillapy/foo.git
 ```
 
 #### `gh-clone`
