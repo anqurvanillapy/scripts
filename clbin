@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+################################################################################
+#
+# clbin
+# =====
+#
+# Recursively clean binaries, which have corresponding source files with
+# identical names.
+#
+# @author AnqurVanillapy
+# @date 29 March 2018
+# @version 0.1.0
+################################################################################
+
+function sjoin () {
+    local d="$1"
+    shift
+    echo -n "$1"
+    shift
+    printf "%s" "${@/#/$d}"
+}
+
+read -r -d '' prune_dirs << EOS
+.git
+EOS
+
+read -r -d '' match_exts << EOS
+*.c
+*.cc
+*.rs
+EOS
+
+# set noglob
+set -f
+
+exts_args=$(for e in $match_exts; do echo "-name=$e"; done)
+dirs_args=$(for e in $prune_dirs; do echo "-not -path ./$e/*"; done)
+
+find . -type f $(sjoin " -o " ${exts_args[@]} | tr '=' ' ') | while read f; do
+    binfname="$(basename "$f" .${f##*.})"
+    find . $dirs_args -type f -name $binfname | while read binfile; do
+        rm -f $binfile
+    done
+done
