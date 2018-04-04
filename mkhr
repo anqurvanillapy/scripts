@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+################################################################################
+#
+# mkhr
+# ====
+#
+# Make a horizontal rule as header for commands.
+#
+# @author AnqurVanillapy
+# @date 4 April 2018
+# @version 0.1.0
+################################################################################
+
+function _puthr () {
+    local hr=$(printf "%-80s" "#")
+    echo "${hr// /\#}"
+}
+
+_puthr
+echo "$@"
+_puthr
+$@
