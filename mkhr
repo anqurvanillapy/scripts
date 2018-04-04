@@ -9,11 +9,12 @@
 #
 # @author AnqurVanillapy
 # @date 4 April 2018
-# @version 0.1.0
+# @version 0.1.1
 ################################################################################
 
 function _puthr () {
-    local hr=$(printf "%-80s" "#")
+    local ncol=$(tput cols)
+    local hr=$(printf "%-${ncol}s" "#")
     echo "${hr// /\#}"
 }
 
