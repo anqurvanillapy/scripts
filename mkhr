@@ -9,7 +9,7 @@
 #
 # @author AnqurVanillapy
 # @date 4 April 2018
-# @version 0.1.1
+# @version 0.1.2
 ################################################################################
 
 function _puthr () {
@@ -20,5 +20,6 @@ function _puthr () {
 
 _puthr
 echo "$@"
+echo "Date:" $(date)
 _puthr
 $@
