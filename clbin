@@ -15,7 +15,7 @@
 #
 # @author AnqurVanillapy
 # @date 29 March 2018
-# @version 0.1.1
+# @version 0.1.2
 ################################################################################
 
 if [[ "$#" != "0" ]]; then echo "Usage: clbin" && exit 1; fi
@@ -36,6 +36,7 @@ read -r -d '' match_exts << EOS
 *.c
 *.cc
 *.rs
+*.hs
 EOS
 
 # set noglob
