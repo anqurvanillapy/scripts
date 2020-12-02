@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Choose AVDs to run from a selectable list on terminal"

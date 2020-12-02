@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
 
-################################################################################
 #
-# ppjson
-# ======
+# ppjson: Pretty-print JSON string
 #
-# Pretty-print JSON, just an alias of using `json.tool' in Python.
-#
-# @author AnqurVanillapy
-# @date 3 June 2017
-# @version 0.1.1
-################################################################################
 
-# So damn useful...
 python3 -m json.tool $@
