@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-#
-# ppjson: Pretty-print JSON string
-#
-
-python3 -m json.tool $@
