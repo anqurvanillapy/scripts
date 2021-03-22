@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# ig: Download a .gitignore file
+# gi: Download a .gitignore file
 #
 
-curl -L -s https://www.gitignore.io/api/$1
+curl -sSL https://www.gitignore.io/api/$1
